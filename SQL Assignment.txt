@@ -1,0 +1,61 @@
+Question 1:
+
+
+---> Creating table using the create query
+
+CREATE TABLE  T ( ID INT , Technology varchar(20));
+
+---> Inserting the  rows in table. 
+
+insert into T values (1,'DS');
+insert into T values (1,'Python');
+insert into T values (1,'Tableau');
+insert into T values (1,'SQL');
+insert into T values (2,'R');
+insert into T values (2,'Power Bi');
+insert into T values (2,'Python');
+insert into T values (3,'DS');
+insert into T values (3,'R');
+insert into T values (3,'Tableau');
+insert into T values (3,'SQL');
+
+-->and the finally the the  required answer is :
+
+select  id from 
+(select id from T where technology in ('DS','Tableau','Python','SQL')) as T1
+group by id having count(id)=4;
+
+
+
+
+Question 2:
+
+Create both table using using foreign key on Product_Id
+
+
+Create table Product_detail (Product_Id int Primary key,Product_Name varchar(50) );
+Create table User_detail (User_ID int,Product_Id int references Product_detail(Product_Id),Liked_Date date );    
+
+
+
+insert into Product_detail values (1001,'blog'); 
+insert into Product_detail values (1002,'Youtube'); 
+insert into Product_detail values (1003,'Education'); 
+
+insert into User_detail values (1,1001,'2023-08-19'); 
+insert into User_detail values (2,1003,'2023-08-18'); 
+
+
+Final Output query: 
+
+
+-->> select Product_Id from Product_detail where  Product_Id not in (select Product_id from User_detail );
+ 
+
+
+
+
+
+
+
+
